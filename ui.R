@@ -17,7 +17,7 @@ shinyUI(fluidPage(
   sidebarLayout(
     sidebarPanel(
       numericInput("freqs",
-                     "Proportion of hawkes:",
+                     "Proportion of hawks:",
                      min = 0,
                      max = 1,
                      value = 0.01, step=.001),    
