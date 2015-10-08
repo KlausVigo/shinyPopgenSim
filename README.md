@@ -6,6 +6,8 @@ You can run shinyPopgen from inside R. You need to have installed recent version
 
     shiny::runGitHub('shinyPopgenSim', 'KlausVigo')
 
+You can launch also shinyTreeViewer directly via the [RStudio server](https://klash.shinyapps.io/shinyPopgenSim)
+
 License
 -------
 shinyTreeViewer is licensed under the GPLv2 or higher.
