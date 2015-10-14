@@ -27,8 +27,11 @@ shinyUI(fluidPage(
                    "Time:",
                    min = 2,
                    max = 10000,
-                   value = 100, step=1)
-      
+                   value = 100, step=1),
+      h3("Export plot"), 
+      textInput('filename', 'Filename'),
+      selectInput('ExportFormat', '', choices = c('pdf', 'ps', 'tex', 'svg', 'png', 'jpg', 'bmp' )),
+      downloadButton('downloadPlot', 'Export Plot') 
     ),
     
     # Show a plot 

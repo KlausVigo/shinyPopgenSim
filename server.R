@@ -30,6 +30,34 @@ shinyServer(function(input, output) {
   })
   
 
+  output$downloadPlot <- downloadHandler(
+      filename = function() { paste(input$filename, '.', input$ExportFormat, sep='') },
+      content = function(file) {
+          
+          width = 6
+          height = 6
+          dpi=300
+          ext = input$ExportFormat
+          
+          switch(ext,
+                 eps = postscript(file, height=height, width=width),
+                 ps = postscript(file, height=height, width=width),       
+                 tex = pictex(file, height=height, width=width),                                                      
+                 pdf = pdf(file, height=height, width=width),
+                 svg = svg(file, height=height, width=width),
+                 wmf = win.metafile(file, width=width, height=height),
+                 emf = win.metafile(file, width=width, height=height),
+                 png = png(file, width=width, height=height, res = dpi, units = "in"),
+                 jpeg = jpeg(file, width=width, height=height, res=dpi, units="in"),
+                 jpg = jpeg(file, width=width, height=height, res=dpi, units="in"),   
+                 bmp = bmp(file, width=width, height=height, res=dpi, units="in"),
+                 tiff = tiff(file, width=width, height=height, res=dpi, units="in")                                      
+          )
+          hawk.dove(p=c(input$freqs, 1-input$freqs), M=values[["payoff"]], time = input$time)
+          dev.off()
+      })
+  
+  
   output$pay_off = renderRHandsontable({
       if (!is.null(input$pay_off)) {
           DF = hot_to_r(input$pay_off)
